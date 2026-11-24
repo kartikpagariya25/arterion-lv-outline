@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    ports: ["8000:8000"]
+    environment:
+      - UPLOAD_DIR=/data/uploads
+    volumes:
+      - ./backend/app/lv_outline/weights:/srv/app/lv_outline/weights:ro
+      - uploads:/data/uploads
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on: [backend]
+    restart: unless-stopped
+volumes:
+  uploads:

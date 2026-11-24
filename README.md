@@ -47,6 +47,13 @@ Tests: `cd backend && pytest tests`.
 
 `training/src`: `build_masks.py` → `train.py` → `evaluate.py` → `export_onnx.py` → `infer.py`. The network (`unet.py`) and loss (`losses.py`) are self-contained in this repo.
 
+## Documentation
+
+- [Model card](MODEL_CARD.md): data, results and limitations
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
+- [Security and privacy](SECURITY.md)
+
 ## Data and licences
 
 Code: MIT. Trained on [EchoNet-Dynamic](https://echonet.github.io/dynamic/) (Ouyang et al., *Nature* 2020), which is released under the Stanford University Dataset Research Use Agreement — non-commercial research use only. Check those terms before using the trained weights outside research.

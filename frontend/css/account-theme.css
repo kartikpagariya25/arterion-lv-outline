@@ -1,0 +1,12 @@
+:root {
+  --acc-font: 'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace; --acc-head: 'Fraunces',Georgia,serif;
+  --acc-bg: #0a2a4d; --acc-panel: #0d3260; --acc-panel2: #0b2f58; --acc-field: #0a2a4d;
+  --acc-ink: #eaf4ff; --acc-dim: #8fb4dc; --acc-line: rgba(160,205,255,.3);
+  --acc-accent: #ffc857; --acc-accent-ink: #2a1d00;
+  --acc-danger: #ff8a8a; --acc-ok: #8be0a4; --acc-warn: #ffc857;
+  --acc-radius: 0; --acc-border: 1px dashed rgba(160,205,255,.4); --acc-shadow: 0 14px 40px rgba(0,10,30,.55); --acc-card-shadow: none;
+  --acc-head-weight: 400; --acc-head-style: italic; --acc-head-case: none; --acc-head-track: 0;
+  --acc-track: 0; --acc-case: none;
+  --acc-page-bg: linear-gradient(rgba(160,205,255,.07) 1px, transparent 1px) 0 0/32px 32px, linear-gradient(90deg, rgba(160,205,255,.07) 1px, transparent 1px) 0 0/32px 32px, #0a2a4d; --acc-scrim: rgba(2,12,28,.75); --acc-glow: rgba(255,200,87,.22);
+  color-scheme: dark;
+}

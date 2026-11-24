@@ -1,5 +1,7 @@
 # Arterion LV Outline
 
+[![tests](https://github.com/kartikpagariya25/arterion-lv-outline/actions/workflows/test.yml/badge.svg)](https://github.com/kartikpagariya25/arterion-lv-outline/actions/workflows/test.yml) ![licence](https://img.shields.io/badge/licence-MIT-blue) ![python](https://img.shields.io/badge/python-3.11-blue)
+
 Traces the **left ventricle** on an apical four-chamber echocardiogram frame: a binary mask, a tinted overlay, and a simplified outline polygon you can feed into volume or ejection-fraction calculations. The site draws the outline with an animated pen stroke and can pick a frame straight from a video.
 
 ![Screenshot](docs/screenshot.jpg)

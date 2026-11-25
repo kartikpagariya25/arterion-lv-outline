@@ -3,6 +3,7 @@ window.ARTERION_APP = {
   slug: "lv-outline",
   name: "Arterion LV Outline",
   home: "index.html",
+  graphic: {type:"contour", colors:["#f0a23b","#2d4a7a"]},
   tasks: {
     "lv-outline": "LV outline"
   },

@@ -1,12 +1,13 @@
 :root {
-  --acc-font: 'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace; --acc-head: 'Fraunces',Georgia,serif;
-  --acc-bg: #0a2a4d; --acc-panel: #0d3260; --acc-panel2: #0b2f58; --acc-field: #0a2a4d;
-  --acc-ink: #eaf4ff; --acc-dim: #8fb4dc; --acc-line: rgba(160,205,255,.3);
-  --acc-accent: #ffc857; --acc-accent-ink: #2a1d00;
-  --acc-danger: #ff8a8a; --acc-ok: #8be0a4; --acc-warn: #ffc857;
-  --acc-radius: 0; --acc-border: 1px dashed rgba(160,205,255,.4); --acc-shadow: 0 14px 40px rgba(0,10,30,.55); --acc-card-shadow: none;
-  --acc-head-weight: 400; --acc-head-style: italic; --acc-head-case: none; --acc-head-track: 0;
-  --acc-track: 0; --acc-case: none;
-  --acc-page-bg: linear-gradient(rgba(160,205,255,.07) 1px, transparent 1px) 0 0/32px 32px, linear-gradient(90deg, rgba(160,205,255,.07) 1px, transparent 1px) 0 0/32px 32px, #0a2a4d; --acc-scrim: rgba(2,12,28,.75); --acc-glow: rgba(255,200,87,.22);
-  color-scheme: dark;
+  --acc-font: 'Onest',system-ui,sans-serif; --acc-head: 'Onest',system-ui,sans-serif;
+  --acc-bg: #e7eef9; --acc-panel: #ffffff; --acc-panel2: #f0f5fc; --acc-field: #ffffff;
+  --acc-ink: #16263f; --acc-dim: #586b88; --acc-line: rgba(22,38,63,.13);
+  --acc-accent: #f0a23b; --acc-accent-ink: #2b1a00;
+  --acc-danger: #c8324a; --acc-ok: #1f8f6a; --acc-warn: #b8741a;
+  --acc-radius: 26px; --acc-border: 1px solid rgba(255,255,255,.9); --acc-shadow: 0 30px 60px -28px rgba(40,64,110,.42); --acc-card-shadow: 0 24px 44px -30px rgba(40,64,110,.4);
+  --acc-head-weight: 700; --acc-head-style: normal; --acc-head-case: none; --acc-head-track: -.03em;
+  --acc-track: 0; --acc-case: none; --acc-pill: 999px; --acc-top: 12px;
+  --bg: #e7eef9; --a1: #ffe2b8; --a2: #c9d9f6; --a3: #dfe6ff; --ease: cubic-bezier(.16, 1, .3, 1); --solid: #ffffff;
+  --acc-page-bg: radial-gradient(900px 520px at 88% -10%, #ffe2b8 0, transparent 60%), radial-gradient(800px 520px at -5% 8%, #c9d9f6 0, transparent 60%), #e7eef9; --acc-scrim: rgba(22,38,63,.4); --acc-glow: rgba(240,162,59,.28);
+  color-scheme: light;
 }

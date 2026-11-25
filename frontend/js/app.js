@@ -10,9 +10,9 @@
     const el = $("status");
     try {
       if (!(await fetch(API + "/health", { cache: "no-store" })).ok) throw 0;
-      el.className = "status ok"; el.lastElementChild.textContent = "api online";
+      el.className = "status ok"; el.lastElementChild.textContent = "API online";
     } catch {
-      el.className = "status bad"; el.lastElementChild.textContent = "api offline · " + API;
+      el.className = "status bad"; el.lastElementChild.textContent = "API offline at " + API;
       setTimeout(ping, 4000);
     }
   }
@@ -30,11 +30,11 @@
     show($("vidpick"), src === "video");
     if (src === "video" && !$("video").getAttribute("src")) {
       show($("vidpick"), false); show($("drop"), true);
-      $("file").accept = "video/*"; $("dropTitle").textContent = "Drop an echo video"; $("dropHint").textContent = "MP4 or WebM · then scrub to a frame";
+      $("file").accept = "video/*"; $("dropTitle").textContent = "Drop an echo video"; $("dropHint").textContent = "MP4 or WebM, then scrub to a frame";
     } else {
       $("file").accept = src === "video" ? "video/*" : "image/*";
       $("dropTitle").textContent = src === "video" ? "Drop an echo video" : "Drop an echo frame";
-      $("dropHint").textContent = src === "video" ? "MP4 or WebM · then scrub to a frame" : "PNG or JPG · click to browse";
+      $("dropHint").textContent = src === "video" ? "MP4 or WebM, then scrub to a frame" : "PNG or JPG, or click to browse";
     }
   }
 
@@ -75,7 +75,7 @@
   function reset() {
     current = null;
     show($("figure"), false); show($("layers"), false); show($("reset"), false); show($("notice"), false); setError("");
-    ["tArea", "tConf", "tBox", "tPts"].forEach((i) => ($(i).textContent = "—"));
+    ["tArea", "tConf", "tBox", "tPts"].forEach((i) => ($(i).textContent = "-"));
     const v = $("video"); v.pause(); v.removeAttribute("src"); v.load(); $("file").value = "";
     showSource();
   }
@@ -89,11 +89,11 @@
 
   async function analyse(file) {
     setError("");
-    show($("busy"), true); $("busyText").textContent = "uploading";
+    show($("busy"), true); $("busyText").textContent = "Uploading";
     try {
       const fd = new FormData(); fd.append("file", file);
       const { file_url } = await post("/uploads", fd, true);
-      $("busyText").textContent = "tracing";
+      $("busyText").textContent = "Tracing";
       render(await post("/lv-outline/predict", { file_url }));
     } catch (e) {
       setError(e.message === "Failed to fetch" ? `Cannot reach the API at ${API}. Is the backend running?` : e.message);
@@ -130,7 +130,7 @@
     const trace = $("tracePath"), fill = $("fillPath"), box = $("bbox");
     if (pts.length < 3) {
       trace.setAttribute("d", ""); fill.setAttribute("d", ""); box.setAttribute("width", 0);
-      ["tArea", "tConf", "tBox", "tPts"].forEach((i) => ($(i).textContent = "—"));
+      ["tArea", "tConf", "tBox", "tPts"].forEach((i) => ($(i).textContent = "-"));
       $("notice").textContent = r.summary; show($("notice"), true); return;
     }
     const d = smooth(pts, W, H);

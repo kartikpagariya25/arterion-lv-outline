@@ -5,59 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arterion LV Outline</title>
 <meta name="description" content="Trace the left ventricle on an echocardiogram frame. Research prototype.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a2a4d'/%3E%3Cpath d='M16 5c7 2 10 9 6 16-2 3-5 5-6 6-1-1-5-3-7-8C7 12 10 6 16 5z' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/app.css">
-<meta name="theme-color" content="#0a2a4d">
+<meta name="theme-color" content="#e7eef9">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Arterion LV Outline">
 <meta property="og:description" content="Left-ventricle segmentation on an apical four-chamber echocardiogram frame. Research prototype.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23f0a23b'/%3E%3Cpath d='M16 6c6 2 9 8 5 15-2 3-4 5-5 5s-3-2-5-7c-2-7 1-11 5-13z' fill='none' stroke='%232b1a00' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/fx.css">
+<link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/account-theme.css">
 <link rel="stylesheet" href="css/account.css">
 </head>
 <body>
 <noscript><p style="padding:1rem;font:16px sans-serif">This page needs JavaScript to upload a file and show the result.</p></noscript>
-<header class="head">
-  <div class="wrap head-in">
-    <div class="id"><span class="sq"></span><b>ARTERION</b><i>/</i><span>LV&nbsp;OUTLINE</span></div>
-    <div class="status" id="status" role="status"><i></i><span>connecting…</span></div>
+
+<header class="head rise" style="--i:0">
+  <div class="head-in">
+    <div class="id"><span class="mark"><i class="ph-bold ph-heart-straight" aria-hidden="true"></i></span><b>Arterion</b><span class="sub">LV Outline</span></div>
+    <div class="status" id="status" role="status"><i></i><span>Connecting</span></div>
   </div>
 </header>
 
 <main class="wrap">
   <section class="hero">
-    <p class="kicker">Plate I · Echocardiography</p>
-    <h1>The ventricle, <em>traced.</em></h1>
-    <p class="lede">Give it one apical four-chamber frame. A U-Net finds the left ventricle and draws its boundary, the first step toward measuring volume and ejection fraction.</p>
+    <h1 class="rise" style="--i:1">The ventricle, <span class="hl">traced.</span></h1>
+    <p class="lede rise" style="--i:2">Give it one apical four-chamber frame. A U-Net finds the left ventricle and draws its boundary.</p>
   </section>
 
-  <section class="sheet" aria-label="Drawing sheet">
+  <section class="sheet card spot rise" style="--i:3" aria-label="Tracing workspace">
     <div class="tabs" role="tablist">
-      <button class="on" data-src="image" role="tab">Frame image</button>
-      <button data-src="video" role="tab">Pick from video</button>
+      <div class="seg">
+        <button class="on press" data-src="image" role="tab"><i class="ph-bold ph-image" aria-hidden="true"></i>Frame image</button>
+        <button class="press" data-src="video" role="tab"><i class="ph-bold ph-film-strip" aria-hidden="true"></i>Pick from video</button>
+      </div>
       <span class="sp"></span>
       <div class="layers" id="layers" hidden>
-        <label><input type="checkbox" id="lFill" checked> fill</label>
-        <label><input type="checkbox" id="lTrace" checked> outline</label>
-        <label><input type="checkbox" id="lBox"> bounds</label>
+        <label><input type="checkbox" id="lFill" checked><span>Fill</span></label>
+        <label><input type="checkbox" id="lTrace" checked><span>Outline</span></label>
+        <label><input type="checkbox" id="lBox"><span>Bounds</span></label>
       </div>
     </div>
 
     <div class="plate" id="plate">
-      <div class="corner c1"></div><div class="corner c2"></div><div class="corner c3"></div><div class="corner c4"></div>
-
       <label class="drop" id="drop" for="file">
-        <svg viewBox="0 0 80 80" width="64" height="64" aria-hidden="true"><path d="M40 8c16 4 24 22 14 40-5 9-12 14-14 16-2-2-9-7-14-20C18 28 24 12 40 8z" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4"/><circle cx="40" cy="38" r="2.5" fill="currentColor"/></svg>
+        <span class="orb"><i class="ph-bold ph-heart-straight" aria-hidden="true"></i></span>
         <strong id="dropTitle">Drop an echo frame</strong>
-        <span id="dropHint">PNG or JPG · click to browse</span>
+        <span class="hint" id="dropHint">PNG or JPG, or click to browse</span>
         <input id="file" type="file" accept="image/*" hidden>
       </label>
 
       <div class="vidpick" id="vidpick" hidden>
         <video id="video" controls muted playsinline></video>
-        <div class="vp-bar"><span>Scrub to the frame you want</span><button class="btn" id="grab">Trace this frame</button></div>
+        <div class="vp-bar"><span>Scrub to the frame you want</span><button class="btn press" id="grab">Trace this frame</button></div>
       </div>
 
       <div class="figure" id="figure" hidden>
@@ -70,36 +72,36 @@
           <path id="tracePath" class="trace"/>
         </svg>
         </div>
-        <span class="fig">FIG. 1</span>
       </div>
-      <div class="busy" id="busy" hidden><div class="ring"></div><b id="busyText">tracing…</b></div>
+      <div class="busy" id="busy" hidden><div class="pulse"><i></i><i></i></div><b id="busyText">Tracing</b></div>
     </div>
 
     <div class="titleblock" id="titleblock">
-      <div><small>Structure</small><b>Left ventricle</b></div>
-      <div><small>Frame area</small><b id="tArea">—</b></div>
-      <div><small>Confidence</small><b id="tConf">—</b></div>
-      <div><small>Bounds (w × h)</small><b id="tBox">—</b></div>
-      <div><small>Contour vertices</small><b id="tPts">—</b></div>
+      <div class="lead"><small>Structure</small><b>Left ventricle</b></div>
+      <div><small>Frame area</small><b id="tArea">-</b></div>
+      <div><small>Confidence</small><b id="tConf">-</b></div>
+      <div><small>Bounds (w × h)</small><b id="tBox">-</b></div>
+      <div><small>Contour vertices</small><b id="tPts">-</b></div>
     </div>
 
     <div class="notice" id="notice" hidden></div>
     <div class="notice err" id="error" role="alert" hidden></div>
-    <div class="row"><button class="btn ghost" id="reset" hidden>New frame</button></div>
+    <div class="row"><button class="btn ghost press" id="reset" hidden><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>New frame</button></div>
   </section>
 
   <section class="notes">
-    <div><h2>What you get</h2><p>A binary mask, a tinted overlay, and a simplified outline polygon (normalised 0–1) from the <code>/lv-outline/predict</code> endpoint — ready to feed a volume or EF calculation.</p></div>
-    <div><h2>How it was trained</h2><p>ResNet-34 U-Net, Dice + focal-Tversky loss, on masks built from the EchoNet-Dynamic expert tracings. Input is resized to 112×112; only the largest connected region is kept.</p></div>
-    <div><h2>Limits</h2><p>Trained on apical four-chamber views from a single centre. Other views, poor windows and out-of-distribution scanners may fail or trace the wrong cavity.</p></div>
+    <div class="n1" data-reveal><h2>What you get</h2><p>A binary mask, a tinted overlay and a simplified outline polygon, normalised from 0 to 1, from the <code>/lv-outline/predict</code> endpoint. It is ready to feed a volume or EF calculation.</p></div>
+    <div class="n2" data-reveal style="--d:1"><h2>How it was trained</h2><p>ResNet-34 U-Net with Dice and focal-Tversky loss, on masks built from the EchoNet-Dynamic expert tracings. Input is resized to 112 by 112, and only the largest connected region is kept.</p></div>
+    <div class="n3" data-reveal style="--d:2"><h2>Limits</h2><p>Trained on apical four-chamber views from a single centre. Other views, poor windows and other scanners may fail or trace the wrong cavity.</p></div>
   </section>
 </main>
 
-<footer class="wrap foot">Research prototype — not a medical device. · <a href="https://github.com/kartikpagariya25/arterion-lv-outline">Source on GitHub</a></footer>
+<footer class="wrap foot">Research prototype, not a medical device. <a href="https://github.com/kartikpagariya25/arterion-lv-outline">Source on GitHub</a></footer>
 
 <script src="js/config.js"></script>
 <script src="js/account-config.js"></script>
 <script src="js/auth.js"></script>
+<script src="js/fx.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

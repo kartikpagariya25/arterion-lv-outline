@@ -81,7 +81,7 @@ def predict(file_url: str) -> dict:
     load_model()
     if _session is None:
         return {
-            "summary": "LV outline model weights not found — training not yet completed.",
+            "summary": "LV outline model weights not found, so training has not been completed.",
             "area_fraction": 0.0, "contour": [], "confidence": 0.0,
         }
 

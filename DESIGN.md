@@ -33,5 +33,8 @@ Headlines: 'Lora'. Body: 'Manrope'. Numbers: 'JetBrains Mono'.
 - **GSAP + ScrollTrigger:** read-progress bar, hero parallax, heading and card reveals, a scrubbed rail that connects the steps, metric bars that grow once in view.
 - **Reduced motion:** all animation is skipped and bars and counters show their final values.
 
+## Dark mode
+Dark tokens override the light ones under `html[data-theme="dark"]`, and under `prefers-color-scheme: dark` when no choice has been saved. Surfaces: `--bg #071420`, `--soft #0a1c2c`, `--card #0e2236`; text `--ink #e4f1fb`; links `--link #7dd3fc`. The toggle remembers the choice in `localStorage` and a script in `<head>` applies it before first paint, so there is no flash. The evidence section is dark in both themes.
+
 ## Accessibility
 Skip link, labelled landmarks, visible focus rings, text contrast of at least 4.5:1 on buttons, and a keyboard-operable mobile menu.

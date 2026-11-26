@@ -4,104 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arterion LV Outline</title>
-<meta name="description" content="Trace the left ventricle on an echocardiogram frame. Research prototype.">
-<meta name="theme-color" content="#e7eef9">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Arterion LV Outline">
-<meta property="og:description" content="Left-ventricle segmentation on an apical four-chamber echocardiogram frame. Research prototype.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23f0a23b'/%3E%3Cpath d='M16 6c6 2 9 8 5 15-2 3-4 5-5 5s-3-2-5-7c-2-7 1-11 5-13z' fill='none' stroke='%232b1a00' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="css/fx.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/landing.css">
 <link rel="stylesheet" href="css/app.css">
 <link rel="stylesheet" href="css/account-theme.css">
 <link rel="stylesheet" href="css/account.css">
 </head>
 <body>
 <noscript><p style="padding:1rem;font:16px sans-serif">This page needs JavaScript to upload a file and show the result.</p></noscript>
-
-<header class="head rise" style="--i:0">
-  <div class="head-in">
-    <div class="id"><span class="mark"><i class="ph-bold ph-heart-straight" aria-hidden="true"></i></span><b>Arterion</b><span class="sub">LV Outline</span></div>
-    <div class="status" id="status" role="status"><i></i><span>Connecting</span></div>
-  </div>
-</header>
-
-<main class="wrap">
-  <section class="hero">
-    <h1 class="rise" style="--i:1">The ventricle, <span class="hl">traced.</span></h1>
-    <p class="lede rise" style="--i:2">Give it one apical four-chamber frame. A U-Net finds the left ventricle and draws its boundary.</p>
-  </section>
-
-  <section class="sheet card spot rise" style="--i:3" aria-label="Tracing workspace">
-    <div class="tabs" role="tablist">
-      <div class="seg">
-        <button class="on press" data-src="image" role="tab"><i class="ph-bold ph-image" aria-hidden="true"></i>Frame image</button>
-        <button class="press" data-src="video" role="tab"><i class="ph-bold ph-film-strip" aria-hidden="true"></i>Pick from video</button>
-      </div>
-      <span class="sp"></span>
-      <div class="layers" id="layers" hidden>
-        <label><input type="checkbox" id="lFill" checked><span>Fill</span></label>
-        <label><input type="checkbox" id="lTrace" checked><span>Outline</span></label>
-        <label><input type="checkbox" id="lBox"><span>Bounds</span></label>
-      </div>
-    </div>
-
-    <div class="plate" id="plate">
-      <label class="drop" id="drop" for="file">
-        <span class="orb"><i class="ph-bold ph-heart-straight" aria-hidden="true"></i></span>
-        <strong id="dropTitle">Drop an echo frame</strong>
-        <span class="hint" id="dropHint">PNG or JPG, or click to browse</span>
-        <input id="file" type="file" accept="image/*" hidden>
-      </label>
-
-      <div class="vidpick" id="vidpick" hidden>
-        <video id="video" controls muted playsinline></video>
-        <div class="vp-bar"><span>Scrub to the frame you want</span><button class="btn press" id="grab">Trace this frame</button></div>
-      </div>
-
-      <div class="figure" id="figure" hidden>
-        <div class="frame" id="frame">
-        <img id="img" alt="Echocardiogram frame">
-        <svg id="svg" preserveAspectRatio="none" aria-label="Traced left ventricle outline">
-          <defs><clipPath id="clip"><path id="clipPath"/></clipPath></defs>
-          <path id="fillPath" class="fill"/>
-          <rect id="bbox" class="bbox"/>
-          <path id="tracePath" class="trace"/>
-        </svg>
-        </div>
-      </div>
-      <div class="busy" id="busy" hidden><div class="pulse"><i></i><i></i></div><b id="busyText">Tracing</b></div>
-    </div>
-
-    <div class="titleblock" id="titleblock">
-      <div class="lead"><small>Structure</small><b>Left ventricle</b></div>
-      <div><small>Frame area</small><b id="tArea">-</b></div>
-      <div><small>Confidence</small><b id="tConf">-</b></div>
-      <div><small>Bounds (w × h)</small><b id="tBox">-</b></div>
-      <div><small>Contour vertices</small><b id="tPts">-</b></div>
-    </div>
-
-    <div class="notice" id="notice" hidden></div>
-    <div class="notice err" id="error" role="alert" hidden></div>
-    <div class="row"><button class="btn ghost press" id="reset" hidden><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>New frame</button></div>
-  </section>
-
-  <section class="notes">
-    <div class="n1" data-reveal><h2>What you get</h2><p>A binary mask, a tinted overlay and a simplified outline polygon, normalised from 0 to 1, from the <code>/lv-outline/predict</code> endpoint. It is ready to feed a volume or EF calculation.</p></div>
-    <div class="n2" data-reveal style="--d:1"><h2>How it was trained</h2><p>ResNet-34 U-Net with Dice and focal-Tversky loss, on masks built from the EchoNet-Dynamic expert tracings. Input is resized to 112 by 112, and only the largest connected region is kept.</p></div>
-    <div class="n3" data-reveal style="--d:2"><h2>Limits</h2><p>Trained on apical four-chamber views from a single centre. Other views, poor windows and other scanners may fail or trace the wrong cavity.</p></div>
-  </section>
-</main>
-
-<footer class="wrap foot">Research prototype, not a medical device. <a href="https://github.com/kartikpagariya25/arterion-lv-outline">Source on GitHub</a></footer>
-
 <script src="js/config.js"></script>
 <script src="js/account-config.js"></script>
 <script src="js/auth.js"></script>
-<script src="js/fx.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

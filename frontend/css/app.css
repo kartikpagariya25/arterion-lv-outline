@@ -57,3 +57,9 @@
 code { font: 500 .88em var(--mono); color: var(--brand-1); background: var(--accent-soft); padding: 1px 7px; border-radius: 999px; }
 @media (max-width: 860px) { .titleblock { grid-template-columns: 1fr 1fr; } .titleblock .lead { grid-column: 1 / -1; } }
 @media (max-width: 560px) { .card { padding: 16px; } .plate { aspect-ratio: 1 / 1; } }
+
+/* dark counterparts for tinted alerts */
+html[data-theme="dark"] .notice, html[data-theme="dark"] .note { background: rgba(251, 191, 36, .12); border-color: rgba(251, 191, 36, .35); color: #fcd34d; }
+html[data-theme="dark"] .notice.err, html[data-theme="dark"] .note.err { background: rgba(244, 63, 94, .14); border-color: rgba(244, 63, 94, .4); color: #fda4af; }
+html[data-theme="dark"] .note.info { background: rgba(96, 165, 250, .14); border-color: rgba(96, 165, 250, .35); color: #bfdbfe; }
+html[data-theme="dark"] .notice code, html[data-theme="dark"] .note code { background: rgba(255, 255, 255, .1); color: inherit; }

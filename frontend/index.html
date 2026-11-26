@@ -66,6 +66,65 @@
     </div>
   </div>
 </section>
+<section class="lp-section lp-soft" id="analyze">
+  <div class="lp-wrap"><div class="lp-head"><span class="lp-pill"><i class="ph-bold ph-flask" aria-hidden="true"></i>Live Tool</span><h2 class="lp-h2">Run an Analysis</h2><p class="lp-sub">Drop in a frame and watch the outline draw itself.</p></div></div>
+  <div class="lp-tool">
+      <section class="sheet card spot rise" style="--i:3" aria-label="Tracing workspace">
+        <div class="tabs" role="tablist">
+          <div class="seg">
+            <button class="on press" data-src="image" role="tab"><i class="ph-bold ph-image" aria-hidden="true"></i>Frame image</button>
+            <button class="press" data-src="video" role="tab"><i class="ph-bold ph-film-strip" aria-hidden="true"></i>Pick from video</button>
+          </div>
+          <span class="sp"></span>
+          <div class="layers" id="layers" hidden>
+            <label><input type="checkbox" id="lFill" checked><span>Fill</span></label>
+            <label><input type="checkbox" id="lTrace" checked><span>Outline</span></label>
+            <label><input type="checkbox" id="lBox"><span>Bounds</span></label>
+          </div>
+        </div>
+
+        <div class="plate" id="plate">
+          <label class="drop" id="drop" for="file">
+            <span class="orb"><i class="ph-bold ph-heart-straight" aria-hidden="true"></i></span>
+            <strong id="dropTitle">Drop an echo frame</strong>
+            <span class="hint" id="dropHint">PNG or JPG, or click to browse</span>
+            <input id="file" type="file" accept="image/*" hidden>
+          </label>
+
+          <div class="vidpick" id="vidpick" hidden>
+            <video id="video" controls muted playsinline></video>
+            <div class="vp-bar"><span>Scrub to the frame you want</span><button class="btn press" id="grab">Trace this frame</button></div>
+          </div>
+
+          <div class="figure" id="figure" hidden>
+            <div class="frame" id="frame">
+            <img id="img" alt="Echocardiogram frame">
+            <svg id="svg" preserveAspectRatio="none" aria-label="Traced left ventricle outline">
+              <defs><clipPath id="clip"><path id="clipPath"/></clipPath></defs>
+              <path id="fillPath" class="fill"/>
+              <rect id="bbox" class="bbox"/>
+              <path id="tracePath" class="trace"/>
+            </svg>
+            </div>
+          </div>
+          <div class="busy" id="busy" hidden><div class="pulse"><i></i><i></i></div><b id="busyText">Tracing</b></div>
+        </div>
+
+        <div class="titleblock" id="titleblock">
+          <div class="lead"><small>Structure</small><b>Left ventricle</b></div>
+          <div><small>Frame area</small><b id="tArea">-</b></div>
+          <div><small>Confidence</small><b id="tConf">-</b></div>
+          <div><small>Bounds (w × h)</small><b id="tBox">-</b></div>
+          <div><small>Contour vertices</small><b id="tPts">-</b></div>
+        </div>
+
+        <div class="notice" id="notice" hidden></div>
+        <div class="notice err" id="error" role="alert" hidden></div>
+        <div class="row"><button class="btn ghost press" id="reset" hidden><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>New frame</button></div>
+      </section>
+
+  </div>
+</section>
 <script src="js/config.js"></script>
 <script src="js/account-config.js"></script>
 <script src="js/auth.js"></script>

@@ -2,14 +2,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from . import ops
 from .accounts import db as accounts_db
 from .accounts.router import router as accounts_router
 from .common import UPLOAD_DIR, InvalidInput, invalid_input_handler, router as uploads_router
 from .lv_outline.router import router as task_router
 
 app = FastAPI(title="arterion-lv-outline")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"],
-                   expose_headers=["X-History-Id"])
+app.add_middleware(CORSMiddleware, allow_origins=ops.cors_origins(), allow_methods=["*"], allow_headers=["*"],
+                   expose_headers=["X-History-Id", "X-Request-Id"])
+ops.install(app)
+ops.start_purge_thread(UPLOAD_DIR)
 app.add_exception_handler(InvalidInput, invalid_input_handler)
 accounts_db.init_db()
 app.include_router(accounts_router)
